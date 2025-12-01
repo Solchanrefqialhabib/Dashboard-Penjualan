@@ -2,9 +2,9 @@
 
 ## ✨ Fitur Utama
 
-```
+## 📸 Screenshot
+
 ![Dashboard](./public/images/image.png)
-```
 
 * **Dashboard Overview:** Menampilkan total pendapatan dan total item terjual.
 * **Grafik Tren Penjualan:** Visualisasi pendapatan harian menggunakan Chart.js.
