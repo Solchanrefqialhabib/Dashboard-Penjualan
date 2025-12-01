@@ -2,6 +2,10 @@
 
 ## ✨ Fitur Utama
 
+🔗 Live Demo
+
+https://dashboard-penjualan.onrender.com
+
 ## 📸 Screenshot
 
 ![Dashboard](./public/images/image.png)
