@@ -22,6 +22,8 @@ Frontend: Blade Template, Tailwind CSS (CDN)
 
 Charting: Chart.js (CDN)
 
+Deployment: Docker (untuk Render.com)
+
 🚀 Instruksi Instalasi Lokal
 
 Ikuti langkah-langkah berikut untuk menjalankan proyek ini di komputer Anda:
@@ -32,19 +34,20 @@ PHP >= 8.1
 
 Composer
 
+Git
+
 Langkah Instalasi
 
 Clone Repository
+(Ganti URL di bawah ini dengan link repository GitHub Anda)
 
 git clone [https://github.com/username-anda/nama-repo.git](https://github.com/username-anda/nama-repo.git)
 cd nama-repo
 
 
-
 Install Dependencies
 
 composer install
-
 
 
 Setup Environment
@@ -53,19 +56,15 @@ Salin file .env.example menjadi .env:
 cp .env.example .env
 
 
-
-Secara default, aplikasi dikonfigurasi menggunakan SQLite. Jika ingin menggunakan MySQL, silakan edit bagian DB_ di file .env.
-
 Generate Key & Database
 
 php artisan key:generate
 
-# Buat file database sqlite (jika menggunakan sqlite)
+# Buat file database sqlite
 touch database/database.sqlite
 
 # Jalankan migrasi
 php artisan migrate
-
 
 
 Import Data Dummy (Seeding)
@@ -74,11 +73,9 @@ PENTING: Langkah ini akan memasukkan data soal (Produk A - Produk E) ke database
 php artisan db:seed --class=PenjualanSeeder
 
 
-
 Jalankan Server
 
 php artisan serve
-
 
 
 Akses Aplikasi
@@ -90,21 +87,68 @@ Agar data penjualan muncul di Dashboard, pastikan Anda melakukan filter tanggal 
 
 Buka Dashboard.
 
-Pada kolom Filter Tanggal, masukkan rentang berikut:
-
-Dari Tanggal: 01/01/2025
-
-Sampai Tanggal: 31/01/2025
+Pada kolom Filter Tanggal, masukkan rentang: 01/01/2025 s/d 31/01/2025.
 
 Klik tombol Filter.
 
-Data penjualan, total pendapatan, dan grafik tren akan muncul.
+🌐 Panduan Deployment (Render.com)
 
-🌐 Hosting
+Aplikasi ini di-hosting menggunakan layanan Render (Free Tier) dengan konfigurasi Docker.
 
-Aplikasi ini dapat di-hosting di layanan seperti Render, Railway, atau Vercel.
+Langkah 1: Persiapan File
 
-Catatan untuk Reviewer:
-Jika menggunakan Vercel/Render versi gratis dengan database SQLite, data mungkin akan ter-reset setiap kali deploy ulang (ephemeral storage).
+Pastikan di dalam repository Anda sudah terdapat file Dockerfile. Proyek ini menggunakan Docker untuk menjalankan PHP 8.2 dan SQLite di lingkungan Render.
+
+Langkah 2: Setup di Render
+
+Buka dashboard.render.com dan login dengan GitHub.
+
+Klik tombol "New +" lalu pilih "Web Service".
+
+Pilih "Build and deploy from a Git repository".
+
+Cari dan pilih repository proyek ini.
+
+Langkah 3: Konfigurasi Web Service
+
+Isi form dengan detail berikut:
+
+Name: dashboard-penjualan (bebas).
+
+Region: Singapore (SG).
+
+Branch: main.
+
+Runtime: Pilih Docker (Penting!).
+
+Instance Type: Pilih Free.
+
+Langkah 4: Environment Variables
+
+Tambahkan variable berikut di menu "Environment Variables":
+
+Key
+
+Value
+
+APP_KEY
+
+(Salin nilai APP_KEY dari file .env lokal)
+
+APP_DEBUG
+
+true
+
+APP_ENV
+
+production
+
+DB_CONNECTION
+
+sqlite
+
+Langkah 5: Deploy
+
+Klik "Create Web Service". Render akan otomatis melakukan build image Docker, migrasi database, dan seeding data.
 
 Dibuat oleh Solchan Refqi Al Habib
