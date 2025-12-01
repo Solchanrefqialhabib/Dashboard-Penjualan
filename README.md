@@ -1,127 +1,151 @@
-📊 Laravel Sales Dashboard
+# 📊 Dashboard Penjualan — README
 
-Live Demo: https://dashboard-penjualan.onrender.com
+## ✨ Fitur Utama
 
-Aplikasi Dashboard Penjualan sederhana berbasis Laravel. Aplikasi ini dibuat untuk memenuhi tes kandidat IT, menampilkan laporan penjualan, grafik tren, dan fitur filter tanggal.
+* **Dashboard Overview:** Menampilkan total pendapatan dan total item terjual.
+* **Grafik Tren Penjualan:** Visualisasi pendapatan harian menggunakan Chart.js.
+* **Tabel Data Rinci:** Daftar transaksi lengkap dengan harga satuan dan total.
+* **Filter Tanggal:** Menyaring data berdasarkan rentang tanggal tertentu.
 
-📸 Tampilan Dashboard
+---
 
-Berikut adalah tangkapan layar dari aplikasi dashboard yang telah berjalan.
+## 🧰 Teknologi yang Digunakan
 
-Ganti URL di bawah dengan path raw GitHub kamu
+* **Framework:** Laravel 10
+* **Database:** SQLite (default) / MySQL (opsional)
+* **Frontend:** Blade Template, Tailwind CSS (CDN)
+* **Charting:** Chart.js
+* **Deployment (opsional):** Docker (untuk Render)
 
-![Dashboard](./public/images/image.png)
+---
 
-📋 Fitur Utama
-
-Dashboard Overview: Menampilkan total pendapatan dan total item terjual.
-Grafik Tren Penjualan: Visualisasi pendapatan harian menggunakan Chart.js.
-Tabel Data Rinci: Daftar transaksi penjualan lengkap dengan harga satuan dan total.
-Filter Tanggal: Kemampuan menyaring data berdasarkan rentang tanggal tertentu.
-
-🛠️ Teknologi yang Digunakan
-
-Framework: Laravel 10/11
-Database: SQLite (Default) / MySQL
-Frontend: Blade Template, Tailwind CSS (CDN)
-Charting: Chart.js (CDN)
-Deployment: Docker (untuk Render.com)
-
-🚀 Instruksi Instalasi Lokal
+## 💻 Instalasi Lokal
 
 Ikuti langkah-langkah berikut untuk menjalankan proyek ini di komputer Anda:
 
-Prasyarat
+### **Prasyarat**
 
-PHP >= 8.1
-Composer
-Git
+* PHP >= 8.1
+* Composer
+* Git
 
-Langkah Instalasi
-Clone Repository
+### **1. Clone Repository**
 
-(Ganti URL di bawah ini dengan link repository GitHub Anda)
-
-git clone https://github.com/username-anda/nama-repo.git
+```bash
+git clone https://github.com/username/nama-repo.git
 cd nama-repo
+```
 
-Install Dependencies
+### **2. Install Dependencies**
+
+```bash
 composer install
+```
 
-Setup Environment
+### **3. Setup Environment**
 
-Salin file .env.example menjadi .env:
-
+```bash
 cp .env.example .env
+```
 
-Generate Key & Database
+### **4. Generate Key & Migrasi Database**
+
+```bash
 php artisan key:generate
-touch database/database.sqlite
 php artisan migrate
+```
 
-Import Data Dummy (Seeding)
+### **5. Import Data Dummy (Seeding)**
 
-PENTING: Langkah ini akan memasukkan data soal (Produk A - Produk E) ke database.
+Langkah ini memasukkan data awal (Produk A–Produk E).
 
+```bash
 php artisan db:seed --class=PenjualanSeeder
+```
 
-Jalankan Server
+### **6. Jalankan Server**
+
+```bash
 php artisan serve
+```
 
-Akses Aplikasi
+Akses aplikasi melalui: **[http://localhost:8000](http://localhost:8000)**
 
-Buka browser dan kunjungi:
-http://localhost:8000
+---
 
-💡 Panduan Penggunaan (Penting)
+## 📘 Panduan Penggunaan
 
-Agar data penjualan muncul di Dashboard, pastikan Anda melakukan filter tanggal yang sesuai dengan data dummy yang telah diimport.
+### **Filter Tanggal (Wajib Menggunakan Data Dummy)**
 
-Buka Dashboard.
+Agar grafik penjualan muncul, pastikan Anda menggunakan rentang tanggal sesuai data dummy.
 
-Pada kolom Filter Tanggal, masukkan rentang: 01/01/2025 s/d 31/01/2025.
+**Contoh:** Isi tanggal antara **01/01/2025 s/d 31/01/2025**, lalu klik tombol **Filter**.
 
-Klik tombol Filter.
+---
 
-🌐 Panduan Deployment (Render.com)
+## ☁️ Deployment Menggunakan Render.com (Free Tier)
 
-Aplikasi ini di-hosting menggunakan layanan Render (Free Tier) dengan konfigurasi Docker.
+Proyek ini menggunakan Docker sehingga dapat di-deploy di Render Free Tier.
 
-Langkah 1: Persiapan File
+### **Langkah 1: Persiapan File**
 
-Pastikan di dalam repository Anda sudah terdapat file Dockerfile. Proyek ini menggunakan Docker untuk menjalankan PHP 8.2 dan SQLite di lingkungan Render.
+Pastikan file berikut **sudah ada** di root project:
 
-Langkah 2: Setup di Render
+* `Dockerfile`
+* `docker-compose.yml` *(opsional)*
+* Menggunakan PHP 8.2 dan SQLite
 
-Buka dashboard.render.com dan login dengan GitHub.
+### **Langkah 2: Setup di Render**
 
-Klik tombol "New +" lalu pilih "Web Service".
+1. Buka **dashboard.render.com**
+2. Klik **New → Web Service**
+3. Pilih **Build and deploy from a Git repository**
+4. Sambungkan repository GitHub Anda
 
-Pilih "Build and deploy from a Git repository".
+### **Langkah 3: Konfigurasi Web Service**
 
-Cari dan pilih repository proyek ini.
+* **Name:** dashboard-penjualan
+* **Region:** Singapore (SG)
+* **Runtime:** Docker
+* **Instance Type:** Free
 
-Langkah 3: Konfigurasi Web Service
+### **Environment Variables (Wajib)**
 
-Name: dashboard-penjualan (bebas)
-Region: Singapore (SG)
-Branch: main
-Runtime: Docker
-Instance Type: Free
+| Key           | Value               |
+| ------------- | ------------------- |
+| APP_KEY       | (salin dari `.env`) |
+| APP_DEBUG     | true                |
+| DB_CONNECTION | sqlite              |
 
-Langkah 4: Environment Variables
-Key	Value
-APP_KEY	(Salin nilai APP_KEY dari .env lokal)
-APP_DEBUG	true
-APP_ENV	production
-DB_CONNECTION	sqlite
-Langkah 5: Deploy
+### **Langkah 4: Deploy**
 
-Klik "Create Web Service". Render akan otomatis melakukan build image Docker, migrasi database, dan seeding data.
+Klik **Create Web Service**. Render akan otomatis:
 
-Langkah 6: Selesai
+* build image Docker
+* migrate database
+* menjalankan aplikasi
 
-Setelah proses build selesai (status Live), aplikasi dapat diakses melalui URL:
-https://dashboard-penjualan.onrender.com
+---
 
-Dibuat oleh Solchan Refqi Al Habib
+## 📷 Struktur Folder Penting
+
+```
+public/
+ └── img/
+      └── image.png   ← gambar disimpan di sini
+resources/
+ └── views/
+      └── ...
+```
+
+Pastikan menampilkan gambar menggunakan path:
+
+```html
+<img src="/images/image.png" alt="Dashboard" />
+```
+
+---
+
+## ✔️ Selesai
+
+README ini sudah dirapikan agar lebih mudah dibaca. Jika ingin ditambahkan bagian lain seperti **FAQ**, **Troubleshooting**, atau **Preview UI**, cukup beri tahu saja!
