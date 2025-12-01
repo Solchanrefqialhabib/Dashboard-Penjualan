@@ -135,17 +135,4 @@ Klik **Create Web Service**. Render akan otomatis:
 
 ---
 
-## 📷 Struktur Folder Penting
-
-```
-public/
- └── img/
-      └── image.png   ← gambar disimpan di sini
-resources/
- └── views/
-      └── ...
-```
-
----
-
 ## ✔️ Selesai
