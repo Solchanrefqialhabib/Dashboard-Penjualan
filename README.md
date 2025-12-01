@@ -1,117 +1,127 @@
 📊 Laravel Sales Dashboard
 
-Laravel Sales Dashboard adalah aplikasi dashboard sederhana untuk menampilkan laporan penjualan, grafik tren, dan tabel transaksi. Aplikasi ini dibuat sebagai bagian dari tes kandidat IT dan dapat digunakan sebagai template untuk sistem pelaporan penjualan.
+Live Demo: https://dashboard-penjualan.onrender.com
 
-📸 Screenshot
+Aplikasi Dashboard Penjualan sederhana berbasis Laravel. Aplikasi ini dibuat untuk memenuhi tes kandidat IT, menampilkan laporan penjualan, grafik tren, dan fitur filter tanggal.
 
-![Dashboard](https://raw.githubusercontent.com/solchanrefqi/dashboard-penjualan/main/public/images/image.png)
+📸 Tampilan Dashboard
 
-🔗 Live Demo:
-https://dashboard-penjualan.onrender.com
+Berikut adalah tangkapan layar dari aplikasi dashboard yang telah berjalan.
 
-✨ Fitur Utama
-📌 Dashboard Overview
+Ganti URL di bawah dengan path raw GitHub kamu
 
-Total pendapatan
+![Dashboard](./public/images/image.png)
 
-Total item terjual
+📋 Fitur Utama
 
-📈 Grafik Tren Penjualan
-
-Visualisasi pendapatan harian menggunakan Chart.js
-
-📋 Tabel Data Penjualan
-
-Daftar transaksi lengkap
-
-Informasi harga satuan, kuantitas, dan total
-
-🗓️ Filter Rentang Tanggal
-
-Memfilter laporan berdasarkan tanggal mulai & akhir
+Dashboard Overview: Menampilkan total pendapatan dan total item terjual.
+Grafik Tren Penjualan: Visualisasi pendapatan harian menggunakan Chart.js.
+Tabel Data Rinci: Daftar transaksi penjualan lengkap dengan harga satuan dan total.
+Filter Tanggal: Kemampuan menyaring data berdasarkan rentang tanggal tertentu.
 
 🛠️ Teknologi yang Digunakan
-Komponen	Teknologi
-Backend	Laravel 10/11
-Database	SQLite (default) / MySQL
-Frontend	Blade Template, Tailwind CSS (CDN)
-Grafik	Chart.js (CDN)
-Deployment	Docker (Render.com)
-🚀 Instalasi Lokal
 
-Ikuti langkah-langkah berikut untuk menjalankan aplikasi secara lokal.
+Framework: Laravel 10/11
+Database: SQLite (Default) / MySQL
+Frontend: Blade Template, Tailwind CSS (CDN)
+Charting: Chart.js (CDN)
+Deployment: Docker (untuk Render.com)
 
-📌 Prasyarat
+🚀 Instruksi Instalasi Lokal
 
-Pastikan sudah terinstal:
+Ikuti langkah-langkah berikut untuk menjalankan proyek ini di komputer Anda:
 
-PHP 8.1 atau lebih baru
+Prasyarat
 
+PHP >= 8.1
 Composer
-
 Git
 
-SQLite (opsional)
+Langkah Instalasi
+Clone Repository
 
-Node.js & NPM (opsional)
-
-📥 Langkah Instalasi
-1. Clone Repository
-
-(Ganti URL dengan repo Anda)
+(Ganti URL di bawah ini dengan link repository GitHub Anda)
 
 git clone https://github.com/username-anda/nama-repo.git
 cd nama-repo
 
-2. Install Dependency Laravel
+Install Dependencies
 composer install
 
-3. Copy File Environment
+Setup Environment
+
+Salin file .env.example menjadi .env:
+
 cp .env.example .env
 
-4. Generate App Key
+Generate Key & Database
 php artisan key:generate
-
-5. Konfigurasi Database
-📄 SQLite (default)
 touch database/database.sqlite
+php artisan migrate
 
+Import Data Dummy (Seeding)
 
-Lalu di file .env:
+PENTING: Langkah ini akan memasukkan data soal (Produk A - Produk E) ke database.
 
-DB_CONNECTION=sqlite
-DB_DATABASE=./database/database.sqlite
+php artisan db:seed --class=PenjualanSeeder
 
-🗄️ MySQL (opsional)
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=sales_dashboard
-DB_USERNAME=root
-DB_PASSWORD=
-
-6. Migrasi & Seeder (untuk data dummy)
-php artisan migrate --seed
-
-7. Jalankan Server Lokal
+Jalankan Server
 php artisan serve
 
+Akses Aplikasi
 
-Aplikasi akan berjalan di:
-👉 http://127.0.0.1:8000
+Buka browser dan kunjungi:
+http://localhost:8000
 
-🐳 Deployment dengan Docker (Render)
+💡 Panduan Penggunaan (Penting)
 
-Proyek ini menyediakan konfigurasi Docker agar bisa dideploy mudah di Render.com.
+Agar data penjualan muncul di Dashboard, pastikan Anda melakukan filter tanggal yang sesuai dengan data dummy yang telah diimport.
 
-Build lokal (opsional)
-docker build -t sales-dashboard .
-docker run -p 8000:80 sales-dashboard
+Buka Dashboard.
 
-📁 Struktur Proyek (Ringkas)
-/app
-/resources/views
-/routes/web.php
-/database/migrations
-/database/seeders
-/public
+Pada kolom Filter Tanggal, masukkan rentang: 01/01/2025 s/d 31/01/2025.
+
+Klik tombol Filter.
+
+🌐 Panduan Deployment (Render.com)
+
+Aplikasi ini di-hosting menggunakan layanan Render (Free Tier) dengan konfigurasi Docker.
+
+Langkah 1: Persiapan File
+
+Pastikan di dalam repository Anda sudah terdapat file Dockerfile. Proyek ini menggunakan Docker untuk menjalankan PHP 8.2 dan SQLite di lingkungan Render.
+
+Langkah 2: Setup di Render
+
+Buka dashboard.render.com dan login dengan GitHub.
+
+Klik tombol "New +" lalu pilih "Web Service".
+
+Pilih "Build and deploy from a Git repository".
+
+Cari dan pilih repository proyek ini.
+
+Langkah 3: Konfigurasi Web Service
+
+Name: dashboard-penjualan (bebas)
+Region: Singapore (SG)
+Branch: main
+Runtime: Docker
+Instance Type: Free
+
+Langkah 4: Environment Variables
+Key	Value
+APP_KEY	(Salin nilai APP_KEY dari .env lokal)
+APP_DEBUG	true
+APP_ENV	production
+DB_CONNECTION	sqlite
+Langkah 5: Deploy
+
+Klik "Create Web Service". Render akan otomatis melakukan build image Docker, migrasi database, dan seeding data.
+
+Langkah 6: Selesai
+
+Setelah proses build selesai (status Live), aplikasi dapat diakses melalui URL:
+https://dashboard-penjualan.onrender.com
+
+Dibuat oleh Solchan Refqi Al Habib
