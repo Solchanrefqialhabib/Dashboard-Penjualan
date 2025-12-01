@@ -4,7 +4,7 @@ Laravel Sales Dashboard adalah aplikasi dashboard sederhana untuk menampilkan la
 
 📸 Screenshot
 
-![Dashboard](./public/images/image.png)
+![Dashboard](https://raw.githubusercontent.com/username/repo/main/public/images/image.png)
 
 🔗 Live Demo:
 https://dashboard-penjualan.onrender.com
