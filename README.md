@@ -2,6 +2,10 @@
 
 ## ✨ Fitur Utama
 
+```
+![Dashboard](./public/images/image.png)
+```
+
 * **Dashboard Overview:** Menampilkan total pendapatan dan total item terjual.
 * **Grafik Tren Penjualan:** Visualisasi pendapatan harian menggunakan Chart.js.
 * **Tabel Data Rinci:** Daftar transaksi lengkap dengan harga satuan dan total.
@@ -138,14 +142,6 @@ resources/
       └── ...
 ```
 
-Pastikan menampilkan gambar menggunakan path:
-
-```html
-<img src="/images/image.png" alt="Dashboard" />
-```
-
 ---
 
 ## ✔️ Selesai
-
-README ini sudah dirapikan agar lebih mudah dibaca. Jika ingin ditambahkan bagian lain seperti **FAQ**, **Troubleshooting**, atau **Preview UI**, cukup beri tahu saja!
